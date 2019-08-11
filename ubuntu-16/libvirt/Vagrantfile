@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
     config.vm.define :lv do |lv|
       lv.vm.box = "generic/ubuntu1604"  
-      lv.vm.hostname = "ubuntu-16-1" 
+      lv.vm.hostname = "ubuntu-pc-16-1" 
       lv.vm.network :public_network,
         :dev => "br0",
         :mode => "bridge",
