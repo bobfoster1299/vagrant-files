@@ -6,9 +6,9 @@ Vagrant.configure("2") do |config|
       :dev => "br0",
       :mode => "bridge",
       :type => "bridge"
-    lv.vm.provision "shell", inline: $script
+    lv.vm.provision "shell", path: "../script.sh"
     lv.vm.provision "puppet" do |puppet|
-      puppet.manifests_path = "my_manifests"
+      puppet.manifests_path = "../my_manifests"
       puppet.manifest_file = "default.pp"
     end
     lv.vm.provider "libvirt" do |lv|

@@ -1,0 +1,24 @@
+$script = <<-SCRIPT
+rpm -Uvh https://yum.puppetlabs.com/puppet6/puppet-release-el-6.noarch.rpm
+yum install puppet-agent man man-pages telnet elinks vim-enhanced bash-completion -y
+/opt/puppetlabs/bin/puppet module install puppet-selinux --version 1.6.1
+rm -rf /etc/localtime
+ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |v|
+    v.name = "centos-6-1"
+    v.linked_clone = true
+    v.memory = 2048
+    v.cpus = 2
+  end
+  config.vm.box = "centos/6"
+  config.vm.hostname = "centos-6-1"
+  config.vm.network "private_network", type: "dhcp"
+  config.vm.provision "shell", inline: $script
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "my_manifests"
+    puppet.manifest_file = "default.pp"
+  end
+end
