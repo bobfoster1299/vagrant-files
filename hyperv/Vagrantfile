@@ -1,16 +1,19 @@
 Vagrant.configure("2") do |config|
   config.vm.define :lv do |lv|
     lv.vm.box = "bento/centos-7"
-    lv.vm.provider "hyperv" 
     #lv.vm.box = "generic/ubuntu1604"   
+    #lv.vm.box = "generic/debian8" 
+    lv.vm.provider "hyperv" 
     lv.vm.hostname = "centos-7-1" 
     lv.vm.provision "shell", path: "../OS/centos-7/script.sh"
+    #lv.vm.provision "shell", path: "../OS/ubuntu-16/script.sh"
+    #lv.vm.provision "shell", path: "../OS/debian-8/script.sh"
     # When building, need to give standard AD creds to create samba share, then admin creds at UAC prompt
     #lv.vm.synced_folder ".", "/vagrant", disabled: true
-    #lv.vm.provision "shell", path: "../OS/ubuntu-16/script.sh"
     lv.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "../OS/centos-7/my_manifests"
       #puppet.manifests_path = "../OS/ubuntu-16/my_manifests"
+      #puppet.manifests_path = "../OS/debian-8/my_manifests"
       puppet.manifest_file = "default.pp"
     end
     lv.vm.provider "hyperv" do |lv|
