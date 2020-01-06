@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
       puppet.manifest_file = "default.pp"
     end
     lv.vm.provider "hyperv" do |lv|
-      lv.vmname = DISTRO
+      lv.vmname = HOSTNAME
       lv.maxmemory = 2048
       lv.cpus = 2
       lv.enable_virtualization_extensions = true
