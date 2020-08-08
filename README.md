@@ -29,4 +29,3 @@ Edit the variables in Vagrantfile to define a distribution, vagrant box, and hos
 ```
 vagrant up --provider hyperv
 ```  
-
