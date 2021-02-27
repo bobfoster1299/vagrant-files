@@ -3,7 +3,6 @@ DISTRO = "centos-7"
 BOX = "bento/centos-7" # bento/centos-7, generic/ubuntu1604, generic/ubuntu1804, generic/debian8, bento/ubuntu-20.04
 HOSTNAME = "centos-7-1"
 
-# When building, need to give standard AD creds to create samba share, then admin creds at UAC prompt
 Vagrant.configure("2") do |config|
   config.vm.define :lv do |lv|
     lv.vm.box = BOX
